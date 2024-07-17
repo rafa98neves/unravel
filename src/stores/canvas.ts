@@ -103,7 +103,9 @@ export const useCanvasStore = defineStore('canvas', () => {
 
     if (currentRoot.value) {
       window.document.title = `Unravel | ${currentRoot.value.name}`
-      if (parent) {
+      const noData = currentRoot.value.uses?.length === 0;
+      
+      if (parent || noData) {
         return goToEnvironment(currentRoot.value.parent)
       }
     }

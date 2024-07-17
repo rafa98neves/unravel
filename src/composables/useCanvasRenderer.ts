@@ -48,7 +48,7 @@ export default function useCanvasRenderer() {
         const node = graph.node(nodeId)
         const nodeIncrement = ((targetNode.width as number) ?? 1) / 2
         const x = node.x * 4 - nodeIncrement
-        const y = node.y * 10 - nodeIncrement
+        const y = node.y * 11 - nodeIncrement
 
         targetNode.position = { x, y }
       }

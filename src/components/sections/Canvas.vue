@@ -40,7 +40,8 @@ async function reGenerateCanvas() {
   render.convertToNode(store.currentBranch)
 
   flow.zoomTo(DEFAULT_ZOOM)
-  setTimeout(() => flow.fitView({ padding: 0.25 }), 10)
+
+  setTimeout(() => flow.fitView(), 10)
 }
 
 /**
@@ -97,14 +98,27 @@ function onNodeDoubleClick(payload: NodeMouseEvent) {
 }
 
 /**
+ * Watchers
+ */
+
+watch(showEnvironmentInfo, () => {
+  if (!showEnvironmentInfo.value) {
+    render.selectNode(null)
+    setTimeout(() => flow.zoomTo(DEFAULT_ZOOM, { duration: 400 }))
+  }
+})
+
+watch(() => store.currentLevel, reGenerateCanvas)
+
+/**
  * Inititalization of the component
  */
+
 store.init().then(() => {
   reGenerateCanvas()
   loading.value = false
 })
 
-watch(() => store.currentLevel, reGenerateCanvas)
 </script>
 
 <template>
@@ -120,9 +134,6 @@ watch(() => store.currentLevel, reGenerateCanvas)
       @node-click="onNodeClick"
       @pane-click="onNodeClick()"
     />
-
-    {{ selectedEnv }}
-
     <DescriptionPanel
       v-if="selectedEnv"
       v-model:visible="showEnvironmentInfo"
