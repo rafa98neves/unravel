@@ -24,7 +24,12 @@
     background-color: transparent !important;
   }
 
-  &-mask + .p-drawer-left {
+  &-mask {
     width: auto !important;
+
+    &.p-drawer-right{
+      right: 0 !important;
+      left: auto !important;
+    }
   }
 }

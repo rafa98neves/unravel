@@ -81,13 +81,13 @@ function onNodeClick(payload?: NodeMouseEvent) {
 
 function onNodeDoubleClick(payload: NodeMouseEvent) {
   doubleClick.value = true
+  loading.value = true
 
   const {
     position: { x, y },
     dimensions: { width, height }
   } = payload.node
 
-  loading.value = true
   flow.setCenter(x + width / 2, y + height / 2, { duration: 700 })
 
   setTimeout(() => {
@@ -130,6 +130,8 @@ store.init().then(() => {
       :min-zoom="MIN_ZOOM"
       :nodes="nodes"
       :edges="edges"
+      :zoom-on-pinch="true"
+      :zoom-on-scroll="true"
       @viewport-change="debounceZoom"
       @node-double-click="onNodeDoubleClick"
       @node-click="onNodeClick"
