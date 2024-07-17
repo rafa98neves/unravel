@@ -31,9 +31,7 @@ const parentEnvs = recursiveGetParent(props.env.id)
   <div>
     <Drawer v-bind="$attrs" :header="env.name.toUpperCase()" position="right" :modal="false">
       <div class="c-DescriptionPanel">
-        <div class="c-DescriptionPanel__description">
-          {{ env.description }}
-        </div>
+        <div class="c-DescriptionPanel__description" v-html="env.description" />
       </div>
 
       <template #footer>
@@ -76,8 +74,8 @@ const parentEnvs = recursiveGetParent(props.env.id)
   }
 
   &__description {
-    text-align: center;
-    font-weight: 300;
+    text-transform: none;
+    font-weight: 400;
     margin: 3rem 0;
   }
 

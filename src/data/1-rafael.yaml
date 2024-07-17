@@ -1,8 +1,8 @@
 name: Rafael Neves
 id: 1-rafael
 type: system
-description: I'm a Frontend Developer. Get to know me!
-uses: 
+description: I'm a Frontend Developer. <br/> <br/> Get to know me!
+uses:
   - 1-level-1
   - 1-level-2
   - 1-level-3
@@ -20,4 +20,3 @@ extra:
   - label: Portefolio
     value: https://rafa98neves.github.io/
     type: url
-

@@ -1,9 +1,11 @@
 .p-drawer {
+  z-index: 5 !important;
   min-width: 25rem;
+  padding-left: 1rem;
   color: var(--un-c-white-mute) !important;
   background-color: var(--un-c-background) !important;
   border: none !important;
-  opacity: 0.9;
+  opacity: 0.95;
   border: none;
 
   &-header-content {
@@ -19,6 +21,10 @@
 
   &.transparent {
     box-shadow: none;
-    background-color: transparent;
+    background-color: transparent !important;
+  }
+
+  &-mask + .p-drawer-left {
+    width: auto !important;
   }
 }

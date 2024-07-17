@@ -1,7 +1,7 @@
 name: Your Product
 id: 0-product
 type: system
-description: 'This is the head of your product. Scroll inside to see more of your world!'
+description: 'This is the head of your product. <br/> <br/> Scroll inside to see more of your world!'
 uses:
   - 0-external-1
   - 0-external-2

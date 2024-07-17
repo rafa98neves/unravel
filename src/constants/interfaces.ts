@@ -1,6 +1,7 @@
 export enum EXTRA_TYPE {
   LINK = 'url',
-  VERSION = 'version'
+  VERSION = 'version',
+  EMAIL = 'email'
 }
 
 export interface EnvironmentExtra {

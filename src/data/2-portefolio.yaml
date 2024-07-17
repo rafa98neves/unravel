@@ -1,10 +1,10 @@
 name: Portefolio
 id: 2-portefolio
 type: system
-description: My portefolio contains all my work. Check it bellow
+description: My portefolio contains all my work. <br/> Check it bellow.
 uses:
   - 2-unbabel
-  - 2-unravel
+  - 2-email
 extra:
   - label: Portefolio
     value: https://rafa98neves.github.io/

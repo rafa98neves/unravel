@@ -13,7 +13,9 @@ defineProps<{ extra: EnvironmentExtra }>()
     <template v-else-if="extra.type === EXTRA_TYPE.VERSION">
       <b> Current version</b>: {{ extra.value }}
     </template>
+
+    <template v-else-if="extra.type === EXTRA_TYPE.EMAIL">
+      <a :href="`mailto:${extra.value}`"> {{ extra.label }}</a>
+    </template>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

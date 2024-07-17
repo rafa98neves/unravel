@@ -83,11 +83,12 @@ function onNodeDoubleClick(payload: NodeMouseEvent) {
   doubleClick.value = true
 
   const {
-    position: { x, y }
+    position: { x, y },
+    dimensions: { width, height }
   } = payload.node
 
   loading.value = true
-  flow.setCenter(x + NODE_SIZE, y + NODE_SIZE, { duration: 1000 })
+  flow.setCenter(x + width / 2, y + height / 2, { duration: 700 })
 
   setTimeout(() => {
     store.goToEnvironment(payload.node.id)
@@ -104,7 +105,7 @@ function onNodeDoubleClick(payload: NodeMouseEvent) {
 watch(showEnvironmentInfo, () => {
   if (!showEnvironmentInfo.value) {
     render.selectNode(null)
-    setTimeout(() => flow.zoomTo(DEFAULT_ZOOM, { duration: 400 }))
+    setTimeout(() => flow.fitView({ duration: 400}))
   }
 })
 

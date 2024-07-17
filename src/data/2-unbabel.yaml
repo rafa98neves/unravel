@@ -1,7 +1,7 @@
 name: Unbabel
 id: 2-unbabel
 type: system
-description: I currently work at Unbabel. \n Unbabel is the first Language Operations Platform fueled by an always-on AI that empowers you to bring in human review when needed – so you can save as you go and easily uplevel quality to meet your business needs.
+description: I currently work at Unbabel. <br/> <br/> Unbabel is the first Language Operations Platform fueled by an always-on AI that empowers you to bring in human review when needed – so you can save as you go and easily uplevel quality to meet your business needs.
 extra:
   - label: Unbabel
     value: https://unbabel.com/
