@@ -1,0 +1,10 @@
+name: Unbabel
+id: unbabel
+type: system
+uses:
+  - meter
+  - salesforce
+contains:
+  - portal
+  - samora
+  - customer-api

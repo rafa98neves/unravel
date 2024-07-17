@@ -1,0 +1,16 @@
+.btn {
+  background-color: var(--un-c-pitch-black);
+  border: 1px solid var(--un-c-white-mute);
+  border-radius: 12px;
+  padding: 1em;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background-color: var(--un-c-black);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+}

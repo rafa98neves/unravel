@@ -1,0 +1,23 @@
+:root {
+  --un-c-white: #ffffff;
+  --un-c-white-soft: #f8f8f8;
+  --un-c-white-mute: #f2f2f2;
+  --un-c-grey: #d8d8d8;
+
+  --un-c-pitch-black: black;
+  --un-c-black: #201f41;
+  --un-c-black-soft: #422d53;
+  --un-c-purple-light: #912e54;
+  --un-c-purple-soft: #d1788f;
+  --un-c-orange: #dd7c86;
+
+  --un-c-background: var(--un-c-pitch-black);
+  --un-c-shadow: var(--un-c-black);
+
+  /* vue-flow variables */
+  --vf-connection-path: var(--un-c-orange);
+  --vf-node-color: var(--un-c-white-mute);
+  --vf-node-text: var(--un-c-white-mute);
+  --vf-box-shadow: var(--un-c-black);
+  --vf-handle: var(--un-c-black);
+}

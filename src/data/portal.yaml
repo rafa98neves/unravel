@@ -1,0 +1,10 @@
+name: Portal
+id: portal
+type: system
+uses:
+  - customer-api
+  - samora
+contains:
+  - major-config
+  - ng-pipelines
+  - ng-web-order

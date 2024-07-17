@@ -1,0 +1,6 @@
+name: Pipelines
+id: ng-pipelines
+type: mife
+uses:
+  - major-config
+  - customer-api

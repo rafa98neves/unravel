@@ -1,0 +1,24 @@
+.p-drawer {
+  min-width: 25rem;
+  color: var(--un-c-white-mute) !important;
+  background-color: var(--un-c-background) !important;
+  border: none !important;
+  opacity: 0.9;
+  border: none;
+
+  &-header-content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  &.small {
+    min-width: 0 !important;
+    width: 15rem;
+  }
+
+  &.transparent {
+    box-shadow: none;
+    background-color: transparent;
+  }
+}
