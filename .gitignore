@@ -4,7 +4,6 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 lerna-debug.log*
 .pnpm-debug.log*
 
@@ -122,6 +121,7 @@ dist
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.vscode
 
 # yarn v2
 .yarn/cache
@@ -129,29 +129,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-=======
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
-
-/cypress/videos/
-/cypress/screenshots/
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
-
-*.tsbuildinfo
->>>>>>> f2c4f4a (project initial commit)

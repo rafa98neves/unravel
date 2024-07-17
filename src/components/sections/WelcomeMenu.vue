@@ -20,7 +20,7 @@ function createUniverse() {}
 
       <p>Discover your tech architecture in a universe of interconnected systems.</p>
 
-      <button class="btn" @click="goToUniverse">Load Unbabel-verse</button>
+      <button class="btn" @click="goToUniverse">Load universe</button>
       <button class="btn" @click="createUniverse" disabled>Create Universe</button>
     </div>
   </div>
@@ -38,22 +38,34 @@ function createUniverse() {}
   background-position-x: -720px;
   height: 100%;
 
+  @media screen and (max-width: 1024px) {
+    background-image: none;
+  }
+
   p {
-    font-size: 0.8rem;
+    max-width: 30rem;
     font-weight: 100;
     padding-bottom: 1rem;
     opacity: 0.8;
+    text-align: center;
   }
 
   &__wrapper {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    margin-right: 3rem;
+    margin-right: 10vw;
     align-items: center;
     gap: 1rem;
     padding-top: max(20vh, 5rem);
     margin-left: auto;
+
+    @media screen and (max-width: 920px) {
+      text-align: center;
+      margin-right: 0;
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
 
     h1 {
       text-transform: uppercase;
@@ -64,6 +76,10 @@ function createUniverse() {}
       span {
         font-weight: 300;
         opacity: 0.3;
+      }
+
+      @media screen and (max-width: 1024px) {
+        text-align: center;
       }
     }
 
