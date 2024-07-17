@@ -1,0 +1,8 @@
+name: LinkedIn
+id: 2-linkedin
+type: system
+description: Connect with me in LinkedIn and send me a message
+extra:
+  - label: LinkedIn
+    value: https://www.linkedin.com/in/neves98rafael/
+    type: url

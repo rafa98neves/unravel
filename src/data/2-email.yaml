@@ -1,0 +1,11 @@
+name: Email
+id: 2-email
+type: system
+description: Find me in neves98rafael@gmail.com
+uses:
+  - 2-github
+  - 2-linkedin
+extra:
+  - label: Send Email
+    value: neves98rafael@gmail.com
+    type: email

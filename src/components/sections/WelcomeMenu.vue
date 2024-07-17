@@ -20,7 +20,7 @@ function createUniverse() {}
 
       <p>Discover your tech architecture in a universe of interconnected systems.</p>
 
-      <button class="btn" @click="goToUniverse">Load universe</button>
+      <button class="btn" @click="goToUniverse">Load Universe</button>
       <button class="btn" @click="createUniverse" disabled>Create Universe</button>
     </div>
   </div>
@@ -43,7 +43,7 @@ function createUniverse() {}
   }
 
   p {
-    max-width: 30rem;
+    max-width: 35rem;
     font-weight: 100;
     padding-bottom: 1rem;
     opacity: 0.8;
@@ -68,14 +68,12 @@ function createUniverse() {}
     }
 
     h1 {
-      text-transform: uppercase;
-      letter-spacing: 0.5rem;
       font-size: 1.7rem;
       font-weight: 500;
 
       span {
         font-weight: 300;
-        opacity: 0.3;
+        opacity: 0.5;
       }
 
       @media screen and (max-width: 1024px) {

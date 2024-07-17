@@ -1,5 +1,5 @@
 id: root
 contains:
-  - meter
-  - unbabel
-  - salesforce
+  - 0-product
+  - 0-external-1
+  - 0-external-2

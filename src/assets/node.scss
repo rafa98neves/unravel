@@ -1,14 +1,20 @@
 .vue-flow__node {
-  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
   border: 2px solid var(--un-c-shadow);
   border-radius: 50%;
   box-shadow: inset -2rem -2rem 5rem 0rem var(--un-c-shadow);
-  padding: 2rem;
   animation: fadeInFromNone 0.3s ease-out;
   transition:
     background-color 0.3s,
     box-shadow 0.3s,
     border-color 0.3s;
+
+  div:nth-child(2) {
+    padding-top: 3rem;
+    max-width: 60%;
+    font-size: max(60%, 1rem);
+  }
 }
 
 .vue-flow__node:hover,

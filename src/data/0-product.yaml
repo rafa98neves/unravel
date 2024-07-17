@@ -1,0 +1,12 @@
+name: Your Product
+id: 0-product
+type: system
+description: 'This is the head of your product. Scroll inside to see more of your world!'
+uses:
+  - 0-external-1
+  - 0-external-2
+contains:
+  - 1-rafael
+  - 1-level-1
+  - 1-level-2
+  - 1-level-3

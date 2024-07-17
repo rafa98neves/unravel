@@ -1,5 +1,0 @@
-name: Web Order
-id: ng-web-order
-type: mife
-uses:
-  - major-config

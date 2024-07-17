@@ -1,18 +1,12 @@
 @import '@vue-flow/core/dist/style.css';
 @import '@vue-flow/core/dist/theme-default.css';
 
+@import './typography.scss';
 @import './variables.scss';
 @import './base.scss';
 @import './node.scss';
 @import './sidebar.scss';
 @import './button.scss';
-
-* {
-  letter-spacing: 3px;
-  font-weight: 200;
-  font-size: 14px;
-  color: var(--un-c-white-mute);
-}
 
 #app {
   height: 100vh;

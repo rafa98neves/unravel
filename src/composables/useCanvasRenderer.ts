@@ -77,7 +77,7 @@ export default function useCanvasRenderer() {
               return comparing.includes(selectedNodeId.value!) && comparing.includes(env.id)
             })
 
-            opacity = isConnected ? 0.8 : 0.3
+            opacity = isConnected ? 0.8 : 0.1
           }
 
           return {
