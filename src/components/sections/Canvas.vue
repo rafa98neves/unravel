@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { reactive, watch, computed } from 'vue'
 
 import { VueFlow, useVueFlow, type NodeMouseEvent, type ViewportTransform } from '@vue-flow/core'
 import { useMouseInElement, useDebounceFn, type MaybeElement } from '@vueuse/core'
@@ -9,19 +9,29 @@ import DescriptionPanel from '@/components/blocks/DescriptionPanel.vue'
 import useCanvasRenderer from '@/composables/useCanvasRenderer'
 import { useCanvasStore } from '@/stores/canvas'
 import COLORS from '@/constants/colors'
-import { DEFAULT_ZOOM, MAX_ZOOM, MIN_ZOOM, NODE_SIZE } from '@/constants/variables'
-import { watch } from 'vue'
+import { DEFAULT_ZOOM, ZOOM_VARIANCE } from '@/constants/variables'
 
 const flow = useVueFlow()
 
-const { nodes, edges, ...render } = useCanvasRenderer()
 const store = useCanvasStore()
+const { nodes, edges, ...render } = useCanvasRenderer()
 
-const loading = ref(true)
-const doubleClick = ref(false)
-const showEnvironmentInfo = ref(false)
+const state = reactive({
+  isLoading: true,
+  isDoubleClick: false,
+  showEnvironmentInfo: false,
+  defaultZoom: DEFAULT_ZOOM,
+})
 
 const debounceZoom = useDebounceFn(handleZoom, 5)
+
+const minZoom = computed(() => {
+  return Math.max(state.defaultZoom * 0.5, 0.1);
+})
+
+const maxZoom = computed(() => {
+  return state.defaultZoom * 1.5
+})
 
 const selectedEnv = computed(() => {
   if (!render.selectedNode.value) return null
@@ -39,9 +49,14 @@ async function reGenerateCanvas() {
   render.resetNodes()
   render.convertToNode(store.currentBranch)
 
-  flow.zoomTo(DEFAULT_ZOOM)
-
-  setTimeout(() => flow.fitView(), 10)
+  setTimeout(() => {
+    flow.fitView().then(() => {
+      state.defaultZoom = flow.getViewport().zoom
+      console.log(`state: ${state.defaultZoom}`)
+      console.log(`minZoom: ${minZoom.value}`)
+      console.log(`maxZoom: ${maxZoom.value}`)
+    })
+  }, 10)
 }
 
 /**
@@ -49,8 +64,8 @@ async function reGenerateCanvas() {
  */
 
 function handleZoom(payload: ViewportTransform) {
-  if ((!loading.value && payload.zoom >= MAX_ZOOM) || payload.zoom <= MIN_ZOOM) {
-    if (payload.zoom >= MAX_ZOOM) {
+  if ((!state.isLoading && payload.zoom >= maxZoom.value) || payload.zoom <= minZoom.value) {
+    if (payload.zoom >= maxZoom.value) {
       let element: MaybeElement
 
       const node = nodes.value.find(({ id }) => {
@@ -71,17 +86,17 @@ function onNodeClick(payload?: NodeMouseEvent) {
   if (!payload?.node) return
 
   setTimeout(() => {
-    if (!doubleClick.value) {
+    if (!state.isDoubleClick) {
       render.selectNode(payload.node)
-      showEnvironmentInfo.value = !!payload
-      setTimeout(() => flow.zoomTo(MIN_ZOOM * 1.5, { duration: 400 }))
+      state.showEnvironmentInfo = !!payload
+      setTimeout(() => flow.zoomTo(minZoom.value * 1.5, { duration: 400 }))
     }
   }, 200)
 }
 
 function onNodeDoubleClick(payload: NodeMouseEvent) {
-  doubleClick.value = true
-  loading.value = true
+  state.isDoubleClick = true
+  state.isLoading = true
 
   const {
     position: { x, y },
@@ -93,8 +108,8 @@ function onNodeDoubleClick(payload: NodeMouseEvent) {
   setTimeout(() => {
     store.goToEnvironment(payload.node.id)
     render.selectNode(null)
-    loading.value = false
-    doubleClick.value = false
+    state.isLoading = false
+    state.isDoubleClick = false
   }, 700)
 }
 
@@ -102,8 +117,8 @@ function onNodeDoubleClick(payload: NodeMouseEvent) {
  * Watchers
  */
 
-watch(showEnvironmentInfo, () => {
-  if (!showEnvironmentInfo.value) {
+watch(() => state.showEnvironmentInfo, () => {
+  if (!state.showEnvironmentInfo) {
     render.selectNode(null)
     setTimeout(() => flow.fitView({ duration: 400}))
   }
@@ -117,7 +132,7 @@ watch(() => store.currentLevel, reGenerateCanvas)
 
 store.init().then(() => {
   reGenerateCanvas()
-  loading.value = false
+  state.isLoading = false
 })
 
 </script>
@@ -126,20 +141,19 @@ store.init().then(() => {
   <div class="c-Canvas">
     <VueFlow
       :default-viewport="{ zoom: DEFAULT_ZOOM }"
-      :max-zoom="MAX_ZOOM + 2"
-      :min-zoom="MIN_ZOOM"
+      :max-zoom="maxZoom + 2"
+      :min-zoom="minZoom"
       :nodes="nodes"
       :edges="edges"
-      :zoom-on-pinch="true"
-      :zoom-on-scroll="true"
       @viewport-change="debounceZoom"
       @node-double-click="onNodeDoubleClick"
       @node-click="onNodeClick"
       @pane-click="onNodeClick()"
     />
+
     <DescriptionPanel
       v-if="selectedEnv"
-      v-model:visible="showEnvironmentInfo"
+      v-model:visible="state.showEnvironmentInfo"
       :env="selectedEnv"
       @change="(id) => store.goToEnvironment(id, true)"
     />
