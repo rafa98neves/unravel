@@ -3,8 +3,10 @@ import { ref, onBeforeUnmount } from 'vue'
 
 import Canvas from '@/components/sections/Canvas.vue'
 import FloatingSearch from '@/components/blocks/FloatingSearch.vue'
+import Tips from '@/components/blocks/Tips.vue'
 
 import useShortcuts from '@/composables/useShortcuts'
+import useDimensions from '@/composables/useDimensions'
 
 const { onSearch, destroy } = useShortcuts()
 
@@ -14,11 +16,14 @@ onSearch(() => {
   isVisible.value = true
 })
 
+const { isBiggerOrEqualThan } = useDimensions()
+
 onBeforeUnmount(destroy)
 </script>
 
 <template>
   <div class="c-CanvasView">
+    <Tips v-if="isBiggerOrEqualThan('MD')" />
     <FloatingSearch v-model:visible="isVisible" />
     <Canvas />
   </div>

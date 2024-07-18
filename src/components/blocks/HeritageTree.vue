@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Environment } from '@/constants/interfaces'
 import { capitalize } from '@/helpers/common'
-import colors from '@/constants/colors'
+import { COLORS } from '@/constants/colors'
 
 defineProps<{ parents: Environment[] }>()
 
@@ -16,7 +16,7 @@ function onClick(id: string) {
   <div class="c-HeirtageTree">
     <div v-for="{ id, name, level } in parents" :key="id">
       <div class="c-HeirtageTree__text" @click="onClick(id)">
-        <span class="indicator" :style="{ backgroundColor: colors[level] }" />
+        <span class="indicator" :style="{ backgroundColor: COLORS[level] }" />
         {{ capitalize(name) }}
       </div>
     </div>

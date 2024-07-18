@@ -1,10 +1,13 @@
 .vue-flow__node {
   display: flex;
   justify-content: center;
-  border: 2px solid var(--un-c-shadow);
+  border-color: var(--un-c-shadow);
   border-radius: 50%;
   box-shadow: inset -2rem -2rem 5rem 0rem var(--un-c-shadow);
   animation: fadeInFromNone 0.3s ease-out;
+  background-clip: content-box;
+  padding: 0px;
+
   transition:
     background-color 0.3s,
     box-shadow 0.3s,

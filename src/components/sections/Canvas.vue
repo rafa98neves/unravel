@@ -8,8 +8,8 @@ import DescriptionPanel from '@/components/blocks/DescriptionPanel.vue'
 
 import useCanvasRenderer from '@/composables/useCanvasRenderer'
 import { useCanvasStore } from '@/stores/canvas'
-import COLORS from '@/constants/colors'
-import { DEFAULT_ZOOM, ZOOM_VARIANCE } from '@/constants/variables'
+import { SHADOW_COLORS, COLORS } from '@/constants/colors'
+import { DEFAULT_ZOOM } from '@/constants/variables'
 
 const flow = useVueFlow()
 
@@ -43,6 +43,7 @@ const selectedEnv = computed(() => {
  */
 async function reGenerateCanvas() {
   document.documentElement.style.setProperty('--un-c-background', COLORS[store.currentLevel])
+  document.documentElement.style.setProperty('--un-c-shadow', SHADOW_COLORS[store.currentLevel])
   document.documentElement.style.setProperty('--vf-node-bg', COLORS[store.currentLevel + 1])
 
   render.selectNode(null)
@@ -52,9 +53,6 @@ async function reGenerateCanvas() {
   setTimeout(() => {
     flow.fitView().then(() => {
       state.defaultZoom = flow.getViewport().zoom
-      console.log(`state: ${state.defaultZoom}`)
-      console.log(`minZoom: ${minZoom.value}`)
-      console.log(`maxZoom: ${maxZoom.value}`)
     })
   }, 10)
 }

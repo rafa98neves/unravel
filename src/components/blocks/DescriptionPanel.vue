@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 import Drawer from 'primevue/drawer'
 
 import HeritageTree from '@/components/blocks/HeritageTree.vue'
@@ -6,10 +8,13 @@ import EnvironmentExtra from '@/components/blocks/EnvironmentExtra.vue'
 
 import type { Environment } from '@/constants/interfaces'
 import { useCanvasStore } from '@/stores/canvas'
+import useDimensions from '@/composables/useDimensions'
 
 const store = useCanvasStore()
 
 const props = defineProps<{ env: Environment }>()
+
+const { isSmallerThan, isBiggerOrEqualThan } = useDimensions()
 
 function recursiveGetParent(parentId?: string, current: Environment[] = []) {
   if (!parentId) return current
@@ -25,17 +30,27 @@ function recursiveGetParent(parentId?: string, current: Environment[] = []) {
 }
 
 const parentEnvs = recursiveGetParent(props.env.id)
+
+const position = computed(() => {
+  return isSmallerThan('LG') ? 'full' : 'right'
+})
 </script>
 
 <template>
   <div>
-    <Drawer v-bind="$attrs" :header="env.name.toUpperCase()" position="right" :modal="false">
+    <Drawer :header="env.name.toUpperCase()" :position="position" :modal="false" v-bind="$attrs">
       <div class="c-DescriptionPanel">
         <div class="c-DescriptionPanel__description" v-html="env.description" />
       </div>
 
       <template #footer>
         <div class="c-DescriptionPanel__footer">
+          <HeritageTree
+            v-if="isSmallerThan('MD') && parentEnvs.length > 1"
+            class="c-DescriptionPanel__tree-stripped"
+            :parents="parentEnvs"
+            v-bind="$attrs"
+          />
           <EnvironmentExtra
             class="c-DescriptionPanel__extra"
             v-for="(extra, index) in env.extra"
@@ -46,9 +61,14 @@ const parentEnvs = recursiveGetParent(props.env.id)
       </template>
     </Drawer>
 
-    <Drawer v-bind="$attrs" :modal="false" class="small transparent" v-if="parentEnvs.length > 1">
+    <Drawer
+      v-if="isBiggerOrEqualThan('MD') && parentEnvs.length > 1"
+      class="small transparent"
+      :modal="false"
+      v-bind="$attrs"
+    >
       <template #container>
-        <HeritageTree v-bind="$attrs" class="c-DescriptionPanel__tree" :parents="parentEnvs" />
+        <HeritageTree class="c-DescriptionPanel__tree" :parents="parentEnvs" v-bind="$attrs" />
       </template>
     </Drawer>
   </div>
@@ -82,6 +102,11 @@ const parentEnvs = recursiveGetParent(props.env.id)
   &__tree {
     margin-top: 5rem;
     margin-left: 1rem;
+
+    &-stripped {
+      margin-bottom: 2rem;
+      margin-left: 0;
+    }
   }
 }
 </style>

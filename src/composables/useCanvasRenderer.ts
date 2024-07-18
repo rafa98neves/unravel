@@ -6,7 +6,7 @@ import { createEdge, createNode } from '@/helpers/canvas'
 import { NODE_SIZE } from '@/constants/variables'
 
 import * as dagre from 'dagre'
-import colors from '@/constants/colors'
+import { COLORS } from '@/constants/colors'
 
 function calculateSizes(childrens = 0) {
   const multiplier = Math.min(5, 1 + childrens / 2)
@@ -85,7 +85,7 @@ export default function useCanvasRenderer() {
             height: width,
             width,
             opacity,
-            backgroundColor: colors[level]
+            backgroundColor: COLORS[level]
           }
         }
       }

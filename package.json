@@ -21,6 +21,7 @@
     "dagre": "^0.8.5",
     "dagre-d3": "^0.6.4",
     "pinia": "^2.1.7",
+    "primeicons": "^7.0.0",
     "primevue": "^4.0.0-rc.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
