@@ -1,18 +1,26 @@
 # Unravel
 
-See your awesome service catalog using the most of Vue 3 reactivity
+Explore your service catalog like never before with the full power of Vue 3's reactivity!
+
+I created this project to dive deep into Vue Flow, crafting an intuitive experience that mimics an infinite zoom canvas—allowing you to seamlessly explore every detail of your infrastructure.
+
+With Unravel, you start with a "Universe" and zoom into your planets, revealing more intricate details as you go deeper.
+
+Curious? Give it a try yourself:
+
+[Live demo](https://unravel-a3818.web.app/home)
 
 ## Runnig
 
 A simple
 
-`npm run build`
+`npm install`
 
 followed by a
 
 `npm run dev`
 
-should make the trick
+should make the trick!
 
 ## Developer
 
